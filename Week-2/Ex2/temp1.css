@@ -1,0 +1,65 @@
+.redBox {
+  width: 8vw;
+  height: 8vw;
+  background-color: red;
+  transition-duration: 1s;
+}
+
+.blueBox {
+  width: 8vw;
+  height: 8vw;
+  background-color: blue;
+  transition-duration: 1s;
+}
+
+.yellowBox {
+  width: 8vw;
+  height: 8vw;
+  background-color: yellow;
+  transition-duration: 1s;
+}
+
+.greenBox {
+  width: 8vw;
+  height: 8vw;
+  background-color: green;
+  transition-duration: 1s;
+}
+
+.box{
+  display: inline-block;
+}
+
+
+.container{
+  text-align: center;
+  margin-top: 20vh;
+}
+
+.hiDiv{
+  display: none;
+}
+
+.container:hover .blueBox{
+  transform: rotate(-90deg);
+  transform-origin: bottom left;
+}
+
+.container:hover .greenBox{
+  transform: rotate(90deg);
+  transform-origin: bottom right;
+}
+
+.container:hover .redBox{
+  transform: rotate(90deg);
+  transform-origin: top left;
+}
+
+.container:hover .yellowBox{
+  transform: rotate(-90deg);
+  transform-origin: top right;
+}
+
+.container:hover .hiDiv{
+  display: block;
+}
