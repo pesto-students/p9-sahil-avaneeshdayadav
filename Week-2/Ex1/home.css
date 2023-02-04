@@ -1,0 +1,63 @@
+.row{
+  width: 100%;
+  background-color: lightyellow;
+}
+
+.col-6{
+  width:45.5%;
+  display: inline-block;
+  padding: 2%;
+  text-align: left;
+  vertical-align: top;
+}
+
+p {
+  text-align: justify;
+}
+
+.container{
+  text-align: center;
+}
+
+.label-div{
+  width: 135px;
+  display: inline-block;
+  padding: 0.8%;
+}
+
+.signUpBtn{
+  color: white;
+  background-color: blue;
+  border: 0px solid white;
+  padding: 1%;
+  border-radius: 5px;
+  box-shadow: 4px 4px lightgray;
+  cursor: pointer;
+}
+
+.signUpBtn:hover{
+  color: blue;
+  background-color: white;
+  border: 1px solid blue;
+}
+
+h2 {
+  text-align: left;
+}
+
+h4 {
+  padding: 0%;
+  margin: 0%;
+  font-style: italic;
+}
+
+h5 {
+  padding: 0%;
+  margin: 0%;
+}
+
+@media screen and (min-width: 0px) and (max-width: 750px)   {
+  .col-6 {
+    width: 95%;
+  }
+}
