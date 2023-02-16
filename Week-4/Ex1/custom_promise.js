@@ -1,3 +1,7 @@
+// more detailed
+// https://codefrontend.com/promises/#:~:text=const%20promise%20%3D%20new%20Promise((,for%20creating%20a%20JavaScript%20promise.
+
+
 function getNumber(resolve, reject) {
     let randomNumber = Math.floor(Math.random() * 100);
     console.log("Random number is " + randomNumber + " ,So");
