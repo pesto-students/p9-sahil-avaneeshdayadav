@@ -2,51 +2,83 @@
 // https://codefrontend.com/promises/#:~:text=const%20promise%20%3D%20new%20Promise((,for%20creating%20a%20JavaScript%20promise.
 
 
-function getNumber(resolve, reject) {
-    let randomNumber = Math.floor(Math.random() * 100);
-    console.log("Random number is " + randomNumber + " ,So");
-    if (randomNumber % 5 == 0) {
-        resolve("Promise is resolved");
-    } else {
-        reject("Promise is rejected");
-    }
-}
-class myPromise {
-    constructor(handler) {
-        this.status = "pending";
-        this.value = null;
+console.log("Welcome to custom promise implementation");
 
-        const resolve = value => {
-            if (this.status === "pending") {
-                this.status = "fulfilled";
-                this.value = value;
-            }
+class myPromise
+{
+  
+    constructor(executor)
+    {   
+        this.isResolved= false;
+        this.resultData;
+        this.thenFunction;
+        
+        const resolve = (value) => {
+               this.isResolved=true;
+               this.resultData=value;
+               if(typeof this.thenFunction === 'function' )
+               {
+                this.thenFunction(this.resultData);
+               }
         };
-        const reject = value => {
-            if (this.status === "pending") {
-                this.status = "rejected";
-                this.value = value;
-            }
+        
+        
+        const reject =(value) => {
+                 this.isResolved=true;
+                 this.resultData=value;
+                 if(typeof this.thenFunction === 'function' )
+                    {
+                        this.thenFunction(this.resultData);
+                    }
+            
         };
-
-        try {
-            handler(resolve, reject);
-        } catch (err) {
-            reject(err);
-        }
+        
+        
+        executor(resolve,reject);
     }
-
-    then(onFulfilled, onRejected) {
-        if (this.status === "fulfilled") {
-            onFulfilled(this.value);
-        } else if (this.status === "rejected") {
-            onRejected(this.value);
+    
+    then(fn)
+    {
+        this.thenFunction=fn;
+        if(this.isResolved)
+        {
+            this.thenFunction(this.resultData);
         }
+        return this;
     }
+    
+    catch(fn)
+    {
+        this.thenFunction=fn;
+        if(this.isResolved)
+        {
+            this.thenFunction(this.resultData);
+        }
+        return this;   
+    }
+    
+    
 }
-const p = new myPromise(getNumber);
-p.then((res) => {
-    console.log(res);
-}, (err) => {
-    console.log(err);
-});
+
+const test2=new myPromise( (resolve,reject) =>{
+    setTimeout(  () => {
+       if((getNumber() % 5) === 0)
+       { 
+          reject("Reject called :- Number is divisible by 5");
+       }
+       else
+       {
+          resolve("Resolved called :- Number is not divisible by 5");
+       }
+    },1000);
+    }).then( (data) => { console.log(data);})
+      .catch((data) => { console.log(data);});
+
+function getNumber()
+{
+    randomNumber = Math.floor(Math.random()*1000);
+    console.log("Random number is "  + randomNumber );
+    return randomNumber;
+    
+}
+
